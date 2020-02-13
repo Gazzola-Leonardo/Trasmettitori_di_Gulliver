@@ -33,3 +33,5 @@ Ala fine della trasmissione il dispositivo di BLEFUSCU emette per 3 volte un seg
 I simboli sono trasmessi premendo sulla tastiera LILLIPUT il carattere/testo desiderato.
 
 Entrambi i dispositivi, una volta inviato o ricevuto il carattere/teso, lo memorizzeranno in una lista semplice linkata carattere per carattere e, alla fine della trasmissione, il testo ricevuto sarà visualizzato da entrambi i dispositivi in console.
+
+![Image of Yaktocat](Codice Morse.png)
