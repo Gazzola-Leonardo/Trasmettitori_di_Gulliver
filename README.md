@@ -38,5 +38,5 @@ Entrambi i dispositivi, una volta inviato o ricevuto il carattere/teso, lo memor
 ![Codice Morse](CodiceMorse.png)
 
 <p align="center">
-  <img width="460" height="300" src="CodiceMorse.png">
+  <img style='width:90%;' src="CodiceMorse.png">
 </p>
