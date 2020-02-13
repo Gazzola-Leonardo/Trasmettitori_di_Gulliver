@@ -35,8 +35,6 @@ I simboli sono trasmessi premendo sulla tastiera LILLIPUT il carattere/testo des
 Entrambi i dispositivi, una volta inviato o ricevuto il carattere/teso, lo memorizzeranno in una lista semplice linkata carattere per carattere e, alla fine della trasmissione, il testo ricevuto sarà visualizzato da entrambi i dispositivi in console.
 
 
-![Codice Morse](CodiceMorse.png)
-
 <p align="center">
   <img style='width:90%;' src="CodiceMorse.png">
 </p>
