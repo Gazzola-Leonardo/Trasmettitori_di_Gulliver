@@ -12,6 +12,14 @@ int fineCarattere = 2000;
 int posPunto = 36;
 int posSpazio = 40;
 
+typedef struct nodo{
+  char lettera;
+  struct nodo* succ;
+}Frase;
+ 
+Frase* frase = NULL;
+
+Frase* aggiungiNodo(Frase* a, char s);
 
 void setup() {
   // put your setup code here, to run once:
@@ -21,61 +29,30 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  
-  Serial.println("scrivi");
+    
+  Serial.println("Inserire la frase");
   input = Serial.readString(); 
   while(input.length() == 0){
     input = Serial.readString(); 
     delay(500); 
   }
-    
-  //Serial.println("Inserire la frase da inviare");
-  /*while(Serial.available()){
-    
-    Serial.println("scrivi");
-    while(input.length() == 0){
-      input = Serial.readString();  
-    }
-      
-    Serial.println(input);
-    
-    delay(2000);
-    //digitalWrite(led, HIGH);
-  }*/
-  
-  Serial.println("Uscito");
 
+  input.toUpperCase();
   int lung = input.length();
-  Serial.println(input);
-
-  //char message[] = input;
-  //char charBuf[50];
-  //input.toCharArray(charBuf, 50);
-
-  
-  //Serial.println(charBuf[0]);
-  //Serial.println(charBuf[1]);
-  //Serial.println(lung);
-  
   char app;
   
   for(int i = 0; i < lung - 1; i++){
     app = input[i];
-    Serial.println("Appoggio: ");
-    Serial.println(app);
+    
+    frase = aggiungiNodo(frase, app);
 
     if(app == " "){
       codiceLetteraLuce(posSpazio);
     }
     else{
-      for(int j = 0; j < 47; j++){
-        Serial.println(Caratteri[j]);
-        Serial.println(app);
-        
+      for(int j = 0; j < 47; j++){        
         if(app == Caratteri[j]){
           codiceLetteraLuce(j);
-          Serial.println("Trovato");
           break;
         }
       }
@@ -86,42 +63,55 @@ void loop() {
   }
   
   input = "";
+
+  stampaLista(frase);
   
-  
+  delay(6000);
 }
 
 void codiceLetteraLuce(int pos){
   
-  Serial.println(pos, DEC);
   String cod = Codice[pos];
-
-  Serial.println(cod);
-  Serial.println(cod.length(), DEC);
-
-  
-  digitalWrite(led, HIGH);  
-  delay(1000);
-  digitalWrite(led, LOW);  
   
   for(int i = 0; i < cod.length(); i++){
     
     char s = cod[i];
-    Serial.println(s);
     
     if(s == '.'){
-      Serial.println("p");
       digitalWrite(led, HIGH);  
       delay(tPunto);
     }
     else if(s == '-'){
-      Serial.println("t");
       digitalWrite(led, HIGH);  
       delay(tTrattino);
     }
     digitalWrite(led, LOW);
     delay(stacco);
   }
-  delay(fineCarattere);
-
   
+  digitalWrite(led, HIGH);
+  delay(fineCarattere);
+  digitalWrite(led, LOW);
+
+}
+
+Frase* aggiungiNodo(Frase* a, char s)
+{
+  if (a == NULL)
+  {
+    Frase* n = (Frase *)malloc(sizeof(Frase));
+    n->lettera = s;
+    n->succ = NULL;
+    return n;
+  }else{
+    a->succ = aggiungiNodo(a->succ, s);
+  }
+  return a;
+}
+
+void stampaLista(Frase* app){
+  if(app != NULL){
+    Serial.println(app->lettera);
+    stampaLista(app->succ);
+  }
 }
