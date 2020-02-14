@@ -20,12 +20,14 @@ typedef struct nodo{
 Frase* frase = NULL;
 
 Frase* aggiungiNodo(Frase* a, char s);
+Frase* clearLista(Frase* app);
+void stampaLista(Frase* app);
+
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(led, OUTPUT);
-
 }
 
 void loop() {
@@ -36,7 +38,10 @@ void loop() {
     input = Serial.readString(); 
     delay(500); 
   }
-
+  Serial.print("Frase inserita: ");
+  Serial.println(input);
+  
+  Serial.println("Invio...");
   input.toUpperCase();
   int lung = input.length();
   char app;
@@ -65,8 +70,11 @@ void loop() {
   input = "";
 
   stampaLista(frase);
-  
+  frase = clearLista(frase);
   delay(6000);
+  Serial.println();
+  Serial.println("------------");
+  
 }
 
 void codiceLetteraLuce(int pos){
@@ -111,7 +119,14 @@ Frase* aggiungiNodo(Frase* a, char s)
 
 void stampaLista(Frase* app){
   if(app != NULL){
-    Serial.println(app->lettera);
+    Serial.print(app->lettera);
     stampaLista(app->succ);
   }
+}
+
+Frase* clearLista(Frase* app){
+  if(app->succ != NULL){
+    app->succ = clearLista(app->succ);
+  }
+  return NULL;
 }
