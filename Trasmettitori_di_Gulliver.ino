@@ -1,7 +1,7 @@
 int led = 13;
 String input;
 
-char Caratteri[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '•', ',', ':', '?', '=', '-', '(', ')', '"', '/', '@', '!'};
+char Caratteri[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ',', ':', '?', '=', '-', '(', ')', '"', '/', '@', '!'};
 char* Codice[] = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", ".-.-.-", "--..--", "---...", "..--..", "-...-", "-....-", "-.--.", "-.--.-", ".-..-.", "-..-.", ".--.-.", "-.-.--" };
 
 
@@ -80,11 +80,11 @@ void loop() {
 void codiceLetteraLuce(int pos){
   
   String cod = Codice[pos];
-  
+  Serial.println(cod);
   for(int i = 0; i < cod.length(); i++){
     
     char s = cod[i];
-    
+    Serial.println(s);
     if(s == '.'){
       digitalWrite(led, HIGH);  
       delay(tPunto);
@@ -100,7 +100,7 @@ void codiceLetteraLuce(int pos){
   digitalWrite(led, HIGH);
   delay(fineCarattere);
   digitalWrite(led, LOW);
-
+  delay(stacco);
 }
 
 Frase* aggiungiNodo(Frase* a, char s)
