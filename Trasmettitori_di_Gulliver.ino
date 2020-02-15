@@ -63,7 +63,7 @@ void loop() {
       }
     }
   }
-  if(app != "."){
+  if(app != '.'){
     codiceLetteraLuce(posPunto);
   }
   
