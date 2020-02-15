@@ -31,7 +31,6 @@ void setup() {
 }
 
 void loop() {
-    
   Serial.println("Inserire la frase");
   input = Serial.readString(); 
   while(input.length() == 0){
@@ -46,12 +45,13 @@ void loop() {
   int lung = input.length();
   char app;
   
+  
   for(int i = 0; i < lung - 1; i++){
     app = input[i];
     
     frase = aggiungiNodo(frase, app);
-
-    if(app == " "){
+    
+    if(app == ' '){
       codiceLetteraLuce(posSpazio);
     }
     else{
@@ -84,7 +84,7 @@ void codiceLetteraLuce(int pos){
   for(int i = 0; i < cod.length(); i++){
     
     char s = cod[i];
-    Serial.println(s);
+    //Serial.println(s);
     if(s == '.'){
       digitalWrite(led, HIGH);  
       delay(tPunto);
